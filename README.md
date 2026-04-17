@@ -8,24 +8,24 @@
 * **Narina Jeevan Naga Deep**
   SRN: PES1UG24CS293
 
-* **Nandhakishore PV**
+* **Nandhakishore**
   SRN: PES1UG24CS291
 
 ---
 
 ## 📌 Overview
 
-This project implements a **Distributed Clock Synchronization System** using **UDP sockets in C**.
-It follows a **time request-reply protocol** similar to NTP to synchronize clocks between a client and a server over a network.
+This project implements a **Distributed Clock Synchronization System** using **UDP sockets in C** with **OpenSSL-based secure communication**.
+It follows a **time request-reply protocol** similar to NTP.
 
 ---
 
 ## 🎯 Objectives
 
-* Implement time synchronization using UDP
-* Calculate **clock offset** and **network delay**
-* Perform **drift correction**
-* Evaluate synchronization **accuracy**
+* Time synchronization using UDP
+* Offset and delay calculation
+* Drift correction
+* Accuracy evaluation
 
 ---
 
@@ -33,14 +33,15 @@ It follows a **time request-reply protocol** similar to NTP to synchronize clock
 
 * C Programming
 * UDP Socket Programming
+* OpenSSL
 * Linux (Ubuntu / VirtualBox)
 
 ---
 
 ## 🧩 System Architecture
 
-* **Server**: Handles multiple clients and provides timestamps (T2, T3)
-* **Client**: Sends requests, calculates offset, delay, and corrected time
+* **Server**: Provides timestamps (T2, T3) securely
+* **Client**: Sends requests and computes synchronization
 
 ---
 
@@ -48,53 +49,51 @@ It follows a **time request-reply protocol** similar to NTP to synchronize clock
 
 ### Time Request–Reply Protocol
 
-1. Client sends request at time **T1**
-2. Server receives at **T2**
-3. Server sends response at **T3**
-4. Client receives at **T4**
+* T1 → Client send
+* T2 → Server receive
+* T3 → Server send
+* T4 → Client receive
 
 ---
 
 ### 📐 Calculations
 
-* **Clock Offset (θ):**
-  θ = ((T2 - T1) + (T3 - T4)) / 2
+**Offset (θ):**
+θ = ((T2 - T1) + (T3 - T4)) / 2
 
-* **Network Delay (δ):**
-  δ = (T4 - T1) - (T3 - T2)
+**Delay (δ):**
+δ = (T4 - T1) - (T3 - T2)
 
 ---
 
 ### 🔧 Drift Correction
 
-Client adjusts its clock using:
-**Corrected Time = T4 + Offset**
+Corrected Time = T4 + Offset
 
 ---
 
 ### 📊 Accuracy Evaluation
 
-* Multiple synchronization requests are performed
-* Average offset and delay improve accuracy
+Multiple requests are averaged to improve synchronization accuracy.
 
 ---
 
 ## 🖥️ How to Run
 
-### Step 1: Compile
+### Compile
 
 ```bash
 gcc server.c -o server -lssl -lcrypto
 gcc client.c -o client -lssl -lcrypto
 ```
 
-### Step 2: Run Server
+### Run Server
 
 ```bash
 ./server
 ```
 
-### Step 3: Run Client
+### Run Client
 
 ```bash
 ./client <server_ip>
@@ -104,14 +103,32 @@ gcc client.c -o client -lssl -lcrypto
 
 ## 🌐 Running on Different Systems
 
-* Ensure both systems are connected to the **same WiFi network**
-* Use the server’s IP address in the client
-
-Example:
+* Use same WiFi network
+* Replace IP in client
+  Example:
 
 ```bash
 ./client 172.30.93.192
 ```
+
+---
+
+## 🔐 SSL Certificate Setup
+
+This project uses OpenSSL for secure communication.
+
+### Generate certificates:
+
+```bash
+openssl req -x509 -newkey rsa:2048 -keyout certs/server.key -out certs/server.crt -days 365 -nodes
+```
+
+### Important:
+
+* `server.crt` is included in this repository
+* `server.key` is NOT included for security reasons
+
+Each user must generate their own private key locally.
 
 ---
 
@@ -134,6 +151,8 @@ Example:
 ├── server.c
 ├── client.c
 ├── README.md
+├── certs/
+│   └── server.crt
 ├── screenshots/
 │   ├── server_output.png
 │   └── client_output.png
@@ -143,9 +162,8 @@ Example:
 
 ## 🚀 Features
 
-* Multi-client support using UDP
-* Secure communication (OpenSSL integration)
-* Time request-reply synchronization
+* Multi-client UDP support
+* Secure communication using OpenSSL
 * Offset and delay computation
 * Drift correction
 * Accuracy evaluation
@@ -154,15 +172,6 @@ Example:
 
 ## 📌 Conclusion
 
-This project demonstrates how distributed systems synchronize clocks using network communication. It highlights the importance of delay and offset calculations in achieving accurate and reliable time synchronization.
-
----
-
-## 🧠 Key Learning Outcomes
-
-* Understanding of distributed systems
-* Hands-on experience with socket programming
-* Implementation of synchronization algorithms
-* Network communication over LAN
+This project demonstrates secure distributed clock synchronization using UDP and highlights the importance of delay and offset in achieving accurate time synchronization.
 
 ---
