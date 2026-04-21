@@ -1,6 +1,6 @@
-# ⏱️ Distributed Clock Synchronization System (UDP)
+#  Distributed Clock Synchronization System (UDP)
 
-## 👥 Team Members
+## Team Members
 
 * **N K Mani Sai Akhil**
   SRN: PES1UG24CS290
@@ -13,14 +13,14 @@
 
 ---
 
-## 📌 Overview
+## Overview
 
 This project implements a **Distributed Clock Synchronization System** using **UDP sockets in C** with **OpenSSL-based secure communication**.
 It follows a **time request-reply protocol** similar to NTP.
 
 ---
 
-## 🎯 Objectives
+## Objectives
 
 * Time synchronization using UDP
 * Offset and delay calculation
@@ -29,7 +29,7 @@ It follows a **time request-reply protocol** similar to NTP.
 
 ---
 
-## ⚙️ Technologies Used
+##  Technologies Used
 
 * C Programming
 * UDP Socket Programming
@@ -38,14 +38,14 @@ It follows a **time request-reply protocol** similar to NTP.
 
 ---
 
-## 🧩 System Architecture
+##  System Architecture
 
 * **Server**: Provides timestamps (T2, T3) securely
 * **Client**: Sends requests and computes synchronization
 
 ---
 
-## 🔁 Working Principle
+##  Working Principle
 
 ### Time Request–Reply Protocol
 
@@ -56,7 +56,7 @@ It follows a **time request-reply protocol** similar to NTP.
 
 ---
 
-### 📐 Calculations
+### Calculations
 
 **Offset (θ):**
 θ = ((T2 - T1) + (T3 - T4)) / 2
@@ -66,19 +66,19 @@ It follows a **time request-reply protocol** similar to NTP.
 
 ---
 
-### 🔧 Drift Correction
+###  Drift Correction
 
 Corrected Time = T4 + Offset
 
 ---
 
-### 📊 Accuracy Evaluation
+###  Accuracy Evaluation
 
 Multiple requests are averaged to improve synchronization accuracy.
 
 ---
 
-## 🖥️ How to Run
+##  How to Run
 
 ### Compile
 
@@ -101,7 +101,7 @@ gcc client.c -o client -lssl -lcrypto
 
 ---
 
-## 🌐 Running on Different Systems
+##  Running on Different Systems
 
 * Use same WiFi network
 * Replace IP in client
@@ -113,7 +113,7 @@ gcc client.c -o client -lssl -lcrypto
 
 ---
 
-## 🔐 SSL Certificate Setup
+##  SSL Certificate Setup
 
 This project uses OpenSSL for secure communication.
 
@@ -132,19 +132,19 @@ Each user must generate their own private key locally.
 
 ---
 
-## 📸 Output Screenshots
+##  Output Screenshots
 
-### 🖥️ Server Output
+### Server Output
 
 ![Server Output](screenshots/server_output.png)
 
-### 💻 Client Output
+### Client Output
 
 ![Client Output](screenshots/client_output.png)
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 .
@@ -160,7 +160,7 @@ Each user must generate their own private key locally.
 
 ---
 
-## 🚀 Features
+##  Features
 
 * Multi-client UDP support
 * Secure communication using OpenSSL
@@ -170,7 +170,7 @@ Each user must generate their own private key locally.
 
 ---
 
-## 📌 Conclusion
+##  Conclusion
 
 This project demonstrates secure distributed clock synchronization using UDP and highlights the importance of delay and offset in achieving accurate time synchronization.
 
